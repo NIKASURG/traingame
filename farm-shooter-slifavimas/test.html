@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test</title>
+</head>
+
+<body>
+    <canvas id="grafikas" width="800" height="400"></canvas>
+    <button id="btn" onclick="generuoju()">Generate Number</button>
+    <button id="addBtn" onclick="pridetiTaska()">Add Point</button>
+    <script>
+        // Linear Congruential Generator parameters
+        const multiplier = 1103515245;
+        const increment = 12345;
+        const modulus = Math.pow(2, 32);
+
+        let pradinisSkaicius = Math.random()*10; // Initial seed value
+
+        // Globalus masyvas skaiciams
+        var skaiciai = [];
+
+        // Function to generate pseudo-random number
+        function sugeneruotiSkaiciu() {
+            pradinisSkaicius =
+                (multiplier * pradinisSkaicius + increment) % modulus;
+            const randomNum = pradinisSkaicius / modulus;
+            // pradinisSkaicius++
+            console.log(randomNum);
+            return randomNum;
+            // return Math.random();
+        }
+
+        // Function to be called when 'Generate Number' button is clicked
+        function generuoju() {
+            sugeneruotiSkaiciu();
+        }
+
+        // Function to add a point to the graph
+        function pridetiTaska() {
+            var naujasSkaicius = sugeneruotiSkaiciu(); // Sugeneruoti naują skaičių
+            skaiciai.push(naujasSkaicius); // Pridėti naują skaičių į masyvą
+            atnaujintiGrafika(); // Atnaujinti grafiką su nauju tašku
+        }
+
+        // Function to redraw the graph with updated data
+        function atnaujintiGrafika() {
+            var canvas = document.getElementById("grafikas");
+            var ctx = canvas.getContext("2d");
+
+            var plotis = canvas.width;
+            var aukštis = canvas.height;
+
+            // Išvalome canvas
+            ctx.clearRect(0, 0, plotis, aukštis);
+
+            // Nubrėžiame x ašį
+            ctx.beginPath();
+            ctx.moveTo(0, aukštis / 2);
+            ctx.lineTo(plotis, aukštis / 2);
+            ctx.strokeStyle = "#000";
+            ctx.stroke();
+
+            // Padauginame skaičius iš 100 ir nubrėžiame kaip taškus pagal x ašį
+            ctx.fillStyle = "#f00"; // spalva taškams
+            ctx.beginPath();
+            var x = 0;
+            var padding = 10; // atstumas tarp taškų
+            for (var i = 0; i < skaiciai.length; i++) {
+                var y = skaiciai[i] * 100; // padauginame iš 100
+                ctx.lineTo(x, aukštis / 2 - y); // pridedame liniją iki šio taško
+                ctx.arc(x, aukštis / 2 - y, 3, 0, Math.PI * 2);
+                ctx.fill();
+                x += padding;
+            }
+            ctx.stroke(); // braižome liniją per visus taškus
+        }
+    </script>
+</body>
+
+</html>

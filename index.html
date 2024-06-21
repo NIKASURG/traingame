@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div
+      id="scoreboard"
+      class="scorebord"
+      style="background-color: rgba(78, 73, 73, 0.7)"
+    >
+      <h>Meniu</h>
+      <p class="info" id="pagauta">Pagauta:<span>0</span></p>
+      <p id="ibego" class="info">Įbėgo:<span>0</span></p>
+      <!-- <p class="islik">Meniu</p> -->
+      <button id="meniubtn">Meniu</button>
+    </div>
+    <div id="divCentrui" class="centras" style="display: none">
+      <div id="meniu" style="background-color: rgba(63, 60, 60, 0.5)">
+       
+       <div id="pasirinkimai">
+        <button id="back">Atgal</button>
+        <button id="setings">Nustatymai</button>
+        
+      </div>
+      <div id="nustatyami"style="display: none">
+        <button id="isNustatimu">Iš nustatymu</button>
+        <input id='customMeniu'type="range" min="0"max='100'></input>
+        <input type="checkbox" id="aktivusDuomenis"></input>
+<div class="contols">
+  <button id="up">aukštyn - <span>w</span></button>
+  <div class="asd">
+    <button id="left">kairėn - <span>a</span></button>
+    <button id="down">žemyn - <span>s</span></button>
+    <button id="right">dešinėn - <span>d</span></button>
+  </div>
+</div>
+      </div>
+      </div>
+    </div>
+    <div id="debugDiv" style="display: none">
+      <p id="DebugXY">X: Y:</p>
+      <canvas id="miniMap"></canvas>
+      <input id="idekLapiu" type="range" min='0' max="2856" value="5">lapiu kiekis</input>
+      <input id="greitis" type="range" min='-100' max="2856" value="10">greitis</input>
+      <input id="mastelis" type="range" min='1.2' max="6" value="12">mastelis</input>
+      <button id="gristNamo">namo</button>
+      <input id="rodikKruma" type="checkbox" >krumai</input>
+      <input id="rodikChunks" type="checkbox">chunks</input>
+      <input id="lapeIgnoruoja" type="checkbox">ignoruok zaideje</input>
+
+    </div>
+    <canvas id="zaidimu-aikstele"></canvas>
+    <script src="js/Veikejas.js"></script>
+    <script src="js/Judejimas.js"></script>
+    <script src="veikejei/krumas.js"></script>
+    
+    <!-- <script src="js/Ivykiai.js"></script> -->
+    <script src="script.js"></script>
+  </body>
+</html>
